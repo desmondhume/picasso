@@ -51,10 +51,10 @@ func hexToRGB(hex string) (uint8, uint8, uint8) {
 
 func Paint(text string, size int) *image.RGBA {
 	img := image.NewRGBA(image.Rect(0, 0, size*10, size*10))
-
+	pointSize := (size * 10) / 8
 	for i, char := range text {
-		startPoint := image.Point{((i % 8) * 8), (i / 8) * 8}
-		endPoint := image.Point{startPoint.X + 10, startPoint.Y + 10}
+		startPoint := image.Point{((i % 8) * pointSize), (i / 8) * pointSize}
+		endPoint := image.Point{startPoint.X + pointSize, startPoint.Y + pointSize}
 		rectangle := image.Rectangle{startPoint, endPoint}
 
 		r, g, b := hexToRGB(palette[char])
